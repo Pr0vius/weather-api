@@ -1,7 +1,7 @@
 {
-  "name": "node-base-rest-api",
+  "name": "weather-api",
   "version": "0.0.1",
-  "description": "A simple node rest API",
+  "description": "A simple weather api rest",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -10,6 +10,7 @@
   "author": "Braian Delgado",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

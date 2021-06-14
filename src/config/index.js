@@ -18,5 +18,10 @@ module.exports = {
     },
     swagger:{
         path: '/api/documentation'
+    },
+    mapbox: {
+        path: process.env.MAPBOX_PATH,
+        endpoint: process.env.MAPBOX_ENDPOINT,
+        apiKey: process.env.MAPBOX_API_KEY,
     }
 };
