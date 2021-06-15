@@ -1,4 +1,4 @@
-const CityRepository = require('../repository/mapbox.repository');
+const CityRepository = require('../repository/city.repository');
 const repository = new CityRepository();
 
 const findCities = async (city) => {
@@ -7,8 +7,8 @@ const findCities = async (city) => {
         return {
             id: e.id,
             name:e.place_name,
-            log:e.geometry.coordinates[0],
-            lat:e.geometry.coordinates[1]
+            lat:e.geometry.coordinates[1],
+            lon:e.geometry.coordinates[0]
         }
     })
 }
