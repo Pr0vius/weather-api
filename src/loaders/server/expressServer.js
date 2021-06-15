@@ -32,6 +32,11 @@ class ExpressServer {
             `${this.basePath}/weather`,
             require("../../routes/weather.routes")
         );
+        
+        this.app.use(
+            `${this.basePath}/cities`,
+            require('../../routes/cities.routes')
+        );
 
         this.app.use(require("../../routes/404.routes"));
     }

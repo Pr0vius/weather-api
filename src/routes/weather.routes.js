@@ -1,9 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 
-const { cities, coordinatesWeather } = require("../controllers/weather.controller");
-
-router.route("/city/:city").get( cities );
+const { coordinatesWeather } = require("../controllers/weather.controller");
 
 router.route("/").get( coordinatesWeather );
 

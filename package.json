@@ -1,6 +1,6 @@
 {
   "name": "weather-api",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple weather api rest",
   "main": "index.js",
   "scripts": {
