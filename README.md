@@ -14,7 +14,7 @@ Third party APIs used:
 * OpenWeatherMap: https://openweathermap.org/
 
 ## Documentation
-For more detailed documentation u can visit https://provius-weather.herokuapp.com/api/v1/documentation/#/Misc/CityListByPath or use the /api/v1/documentation path on localhost
+For more detailed documentation u can visit https://provius-weather.herokuapp.com/api/v1/documentation or use the /api/v1/documentation path on localhost
 
 ## Usage
 For usage u need install the dependecies, change the **env.example** to **.env** and complete the env variables 
