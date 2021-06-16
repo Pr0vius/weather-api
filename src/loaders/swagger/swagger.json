@@ -1,162 +1,730 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Rest base repo.",
-    "description": "## This is a base api to start new projects.",
-    "version": "0.0.1",
+    "title": "Weather api Docs",
+    "description": "This basic API allows you to get a city coordinates, get the coordinate's weather and get the weather of an specific city.\n    \nDependencies:\n* NodeJs\n* Express\n* Axios\n* Cors\n\nThird party APIs used: \n* Mapbox : https://www.mapbox.com/\n* OpenWeatherMap: https://openweathermap.org/",
     "contact": {
+      "name": "Braian Ezequiel Delgado",
       "email": "braiandelgado4255@hotmail.com"
-    }
-  },
-  
-  "servers":[
-    {
-      "url":"http://localhost:3000/api/v1",
-      "description": "Development"  
     },
+    "version": "1.0.0"
+  },
+  "servers": [
     {
-      "url":"",
-      "description": "Production"  
-    } 
-  ],
-  "tags": [    
-    {
-      "name": "users",
-      "description": "Operations about users."
+      "url": "http://localhost:3000/api/v1",
+      "variables": {}
     }
   ],
-  "paths": {    
-    "/api/v1/users": {
+  "paths": {
+    "/cities/{city}": {
       "get": {
         "tags": [
-          "users"
+          "Misc"
         ],
-        "summary": "Get a list of all existing users.",
-        "description": "",             
+        "summary": "City List By Path",
+        "description": "This method gives a JSON object with the \"status\" of the operation and another object with the city list data. You must search the city name by the **Path Parameter** and the API will return a list of 10 location's data.",
+        "operationId": "CityListByPath",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "new&york"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "The array of users in JSON format.",
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1567"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"61f-axaZJ4QCuV9C5fiegntMWuU66Zc\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 15 Jun 2021 22:46:00 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
             "content": {
-              "application/json":{
-                "schema":{
-                  "type": "array",
-                  "items":{
-                    "$ref": "#/components/schemas/User"                    
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityListByPath"
+                },
+                "example": {
+                  "status": 200,
+                  "data": [
+                    {
+                      "id": "place.2618194975964500",
+                      "name": "New York City, New York, United States",
+                      "lat": 40.7306,
+                      "lon": -73.9866
+                    },
+                    {
+                      "id": "region.17349986251855570",
+                      "name": "New York, United States",
+                      "lat": 42.751210955,
+                      "lon": -75.4652471468304
+                    },
+                    {
+                      "id": "poi.429496770385",
+                      "name": "John F. Kennedy International Airport, JFK Expy, New York City, New York 11430, United States",
+                      "lat": 40.642421999999996,
+                      "lon": -73.781749
+                    },
+                    {
+                      "id": "poi.970662659789",
+                      "name": "Stewart International Airport, 1180 1st St, New Windsor, New York 12553, United States",
+                      "lat": 41.501400000000004,
+                      "lon": -74.102721
+                    },
+                    {
+                      "id": "poi.352187322190",
+                      "name": "New York Skyports Inc. Seaplane Base, 2430 Fdr Drive Service Rd E, New York City, New York, United States",
+                      "lat": 40.734429500000005,
+                      "lon": -73.972895499999993
+                    },
+                    {
+                      "id": "poi.317827620723",
+                      "name": "Orange County Airport (KMGJ), Union St, Montgomery, New York 12549, United States",
+                      "lat": 41.510669,
+                      "lon": -74.2613
+                    },
+                    {
+                      "id": "poi.773094205509",
+                      "name": "Museum of Modern Art (MoMA), 11 W 53rd St, New York City, New York 10019, United States",
+                      "lat": 40.761409,
+                      "lon": -73.977781499999992
+                    },
+                    {
+                      "id": "poi.188978605454",
+                      "name": "Williamsburg Bridge, Williamsburg Bridge, New York City, New York 10002, United States",
+                      "lat": 40.710444332031244,
+                      "lon": -73.981896534179683
+                    },
+                    {
+                      "id": "poi.764504261660",
+                      "name": "Brooklyn Bridge, Brooklyn Bridge, New York City, New York, United States",
+                      "lat": 40.708646921875,
+                      "lon": -73.9876234140625
+                    },
+                    {
+                      "id": "poi.17179955930",
+                      "name": "St. Patrick's Cathedral, 15 E 51st St, New York City, New York 10022, United States",
+                      "lat": 40.758618999999996,
+                      "lon": -73.9763935
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/weather": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Weather by coordinates",
+        "description": "This method need two query parameters **lat** and **lon**, and returns the weather data of the location",
+        "operationId": "Weatherbycoordinates",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 40.7306
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": -73.9866
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "128"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"80-sSbvewa9jRPdogc5j7D9EYtXO9g\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 15 Jun 2021 22:41:13 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Weatherbycoordinates"
+                },
+                "example": {
+                  "status": 200,
+                  "data": {
+                    "weather": {
+                      "main": "Clear",
+                      "description": "clear sky"
+                    },
+                    "temperature": 24.78,
+                    "tempMin": 21.86,
+                    "tempMax": 26.65
                   }
                 }
               }
             }
           }
-        }
-      },
-      "post": {
+        },
+        "deprecated": false
+      }
+    },
+    "/weather/{city}/{id}": {
+      "get": {
         "tags": [
-          "users"
+          "Misc"
         ],
-        "summary": "Create a new user.",
-        "description": "",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
+        "summary": "Weather by city & id",
+        "description": "This method need 2 path param, the first is the **city** you want to search, and the second one is the **id** of the city, you can get this data from **/api/v1/cities/:city** these must match to give the specific data from the city's weather.",
+        "operationId": "Weatherbycity&id",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "new york"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "place.2618194975964500"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "226"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"e2-4ylSwh+VjViVkNcZ7CyqmILjDVw\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 15 Jun 2021 22:41:35 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Weatherbycity%26id"
+                },
+                "example": {
+                  "status": 200,
+                  "data": {
+                    "id": "place.2618194975964500",
+                    "name": "New York City",
+                    "lat": 40.7306,
+                    "lon": -73.9866,
+                    "weatherData": {
+                      "weather": {
+                        "main": "Clear",
+                        "description": "clear sky"
+                      },
+                      "temperature": 24.78,
+                      "tempMin": 21.86,
+                      "tempMax": 26.65
+                    }
+                  }
+                }
               }
             }
           }
         },
-        "responses": {
-          "201": {
-            "description": "User created."
-          }
-        }
-      }
-    },
-    "/users/{id}": {
-      "put": {
-        "tags": [
-          "users"
-        ],
-        "summary": "Update an existing user by providing the id.",
-        "description": "",           
-        "parameters":[          
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The id of the user that needs to be updated.",
-            "required": true,
-            "schema": {
-              "type":"integer"
-            }
-          }          
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        }, 
-        "responses": {
-          "200": {
-            "description": "The user updated",
-            "content":{
-              "application/json":{
-                "schema":{
-                  "type": "object",
-                  "$ref": "#/components/schemas/User" 
-                }
-              }              
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "users"
-        ],
-        "summary": "Delete an existing user by providing the id.",
-        "description": "",
-        "parameters":[          
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The id of the user that needs to be deleted.",
-            "required": true,
-            "schema": {
-              "type":"integer"
-            }
-          }          
-        ],     
-        "responses": {
-          "200": {
-            "description": "User deleted."
-          }
-        }
+        "deprecated": false
       }
     }
   },
   "components": {
     "schemas": {
-      "User": {
+      "CityListByPath": {
+        "title": "CityListByPath",
         "required": [
-          "id"
+          "status",
+          "data"
         ],
         "type": "object",
         "properties": {
-          "id":{
-            "description": "The user id.",
-            "type": "integer",          
-            "example": "3"
+          "status": {
+            "type": "integer",
+            "format": "int32"
           },
-          "name":{
-            "description": "The user name.",
-            "type":"string",          
-            "example":"Brian"
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Datum"
+            },
+            "description": ""
           }
+        },
+        "example": {
+          "status": 200,
+          "data": [
+            {
+              "id": "place.2618194975964500",
+              "name": "New York City, New York, United States",
+              "lat": 40.7306,
+              "lon": -73.9866
+            }
+          ]
+        }
+      },
+      "Datum": {
+        "title": "Datum",
+        "required": [
+          "id",
+          "name",
+          "lat",
+          "lon"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lon": {
+            "type": "number"
+          }
+        },
+        "example": {
+          "id": "place.2618194975964500",
+          "name": "New York City, New York, United States",
+          "lat": 40.7306,
+          "lon": -73.9866
+        }
+      },
+      "Weatherbycoordinates": {
+        "title": "Weatherbycoordinates",
+        "required": [
+          "status",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data"
+          }
+        },
+        "example": {
+          "status": 200,
+          "data": {
+            "weather": {
+              "main": "Clear",
+              "description": "clear sky"
+            },
+            "temperature": 24.78,
+            "tempMin": 21.86,
+            "tempMax": 26.65
+          }
+        }
+      },
+      "Data": {
+        "title": "Data",
+        "required": [
+          "weather",
+          "temperature",
+          "tempMin",
+          "tempMax"
+        ],
+        "type": "object",
+        "properties": {
+          "weather": {
+            "$ref": "#/components/schemas/Weather"
+          },
+          "temperature": {
+            "type": "number"
+          },
+          "tempMin": {
+            "type": "number"
+          },
+          "tempMax": {
+            "type": "number"
+          }
+        },
+        "example": {
+          "weather": {
+            "main": "Clear",
+            "description": "clear sky"
+          },
+          "temperature": 24.78,
+          "tempMin": 21.86,
+          "tempMax": 26.65
+        }
+      },
+      "Weather": {
+        "title": "Weather",
+        "required": [
+          "main",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "main": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "main": "Clear",
+          "description": "clear sky"
+        }
+      },
+      "Weatherbycity&id": {
+        "title": "Weatherbycity&id",
+        "required": [
+          "status",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data1"
+          }
+        },
+        "example": {
+          "status": 200,
+          "data": {
+            "id": "place.2618194975964500",
+            "name": "New York City",
+            "lat": 40.7306,
+            "lon": -73.9866,
+            "weatherData": {
+              "weather": {
+                "main": "Clear",
+                "description": "clear sky"
+              },
+              "temperature": 24.78,
+              "tempMin": 21.86,
+              "tempMax": 26.65
+            }
+          }
+        }
+      },
+      "Data1": {
+        "title": "Data1",
+        "required": [
+          "id",
+          "name",
+          "lat",
+          "lon",
+          "weatherData"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lon": {
+            "type": "number"
+          },
+          "weatherData": {
+            "$ref": "#/components/schemas/WeatherData"
+          }
+        },
+        "example": {
+          "id": "place.2618194975964500",
+          "name": "New York City",
+          "lat": 40.7306,
+          "lon": -73.9866,
+          "weatherData": {
+            "weather": {
+              "main": "Clear",
+              "description": "clear sky"
+            },
+            "temperature": 24.78,
+            "tempMin": 21.86,
+            "tempMax": 26.65
+          }
+        }
+      },
+      "WeatherData": {
+        "title": "WeatherData",
+        "required": [
+          "weather",
+          "temperature",
+          "tempMin",
+          "tempMax"
+        ],
+        "type": "object",
+        "properties": {
+          "weather": {
+            "$ref": "#/components/schemas/Weather"
+          },
+          "temperature": {
+            "type": "number"
+          },
+          "tempMin": {
+            "type": "number"
+          },
+          "tempMax": {
+            "type": "number"
+          }
+        },
+        "example": {
+          "weather": {
+            "main": "Clear",
+            "description": "clear sky"
+          },
+          "temperature": 24.78,
+          "tempMin": 21.86,
+          "tempMax": 26.65
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
 }

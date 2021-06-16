@@ -18,7 +18,7 @@ module.exports = {
         level: process.env.LOG_LEVEL || "silly",
     },
     swagger: {
-        path: "/api/documentation",
+        path: "/api/v1/documentation",
     },
     mapbox: {
         path: process.env.MAPBOX_PATH,

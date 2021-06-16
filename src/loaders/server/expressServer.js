@@ -28,14 +28,15 @@ class ExpressServer {
             res.status(200).end();
         });
 
+
         this.app.use(
             `${this.basePath}/weather`,
             require("../../routes/weather.routes")
         );
-        
+
         this.app.use(
             `${this.basePath}/cities`,
-            require('../../routes/cities.routes')
+            require("../../routes/cities.routes")
         );
 
         this.app.use(require("../../routes/404.routes"));

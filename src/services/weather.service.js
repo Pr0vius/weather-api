@@ -1,8 +1,12 @@
+const ErrorResponse = require("../helpers/errorResponse");
 const WeatherRepository = require("../repository/weather.repository");
+const CityRepository = require("../repository/city.repository");
+
 const weatherRepo = new WeatherRepository();
+const cityRepo = new CityRepository();
 
 /**
- * Return an object with de weather data by coordinates
+ * Return a Promise with an object with the weather data by coordinates
  * @param {*} latitude
  * @param {*} longitude
  */
@@ -20,6 +24,33 @@ const weatherByCoords = async (latitude, longitude) => {
     };
 };
 
+findWeatherByCityId = async(city, id) => {
+    try {
+        const cities = await cityRepo.findCities(city);
+        const cityData = cities.features.find(e => id === e.id);
+
+        const lon = cityData.geometry.coordinates[0];
+        const lat = cityData.geometry.coordinates[1];
+        
+        const weatherData = await weatherByCoords(lat, lon)
+
+        return {
+            id: cityData.id,
+            name : cityData.text,
+            lat,
+            lon,
+            weatherData
+
+        }
+
+    } catch (error) {
+        new ErrorResponse(`Error:${error.message}`,400)
+    }
+
+}
+
+
 module.exports = {
     weatherByCoords,
+    findWeatherByCityId
 };
