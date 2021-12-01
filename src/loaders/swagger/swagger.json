@@ -11,6 +11,10 @@
   },
   "servers": [
     {
+      "url": "https://pr0vius-weather.herokuapp.com/api/v1",
+      "variables": {}
+    },         
+    {
       "url": "http://localhost:3000/api/v1",
       "variables": {}
     }
